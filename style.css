@@ -26,3 +26,13 @@ section {
 #gallery .row > * {
   padding: 0;
 }
+
+.carousel-item {
+  height: 670px;
+}
+.carousel-item img {
+  margin-top: -120px;
+}
+.carousel-contain {
+  color: white;
+}
