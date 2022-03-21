@@ -41,3 +41,8 @@ section {
   width: 400;
   height: 300;
 }
+.toast-button {
+  position: absolute;
+  bottom: 25px;
+  left: 20px;
+}

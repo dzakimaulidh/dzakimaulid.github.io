@@ -196,7 +196,7 @@
     <section id="gallery">
      <div class="container">
        
-       <div class="container carousel-contain py-5 gambar-hd">
+       <div class="container carousel-contain py-5 ">
         <h2 class="text-center mb-5">Gambar HD Kami</h2>
         <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
           <div class="carousel-indicators">
@@ -244,7 +244,8 @@
           <!-- Akhir Gallery -->
 
 
-    <!--Contact -->
+
+          <!--Contact -->
     <section id="contact">
       <div class="container">
         <div class="row text-center mb-4">
@@ -310,12 +311,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
   
+    <script src="dist/sweetalert2.all.min.js"></script>
+  
     <script>
    
       gsap.from('.jumbotron img', {duration: 1, y:-100, rotateY:360, opacity: 0, });
       gsap.from('.navbar', { duration: 1.5, y: '-100%', opacity: 0, ease: 'bounce'});
       gsap.from('.display-4', { duration: 1, x: -50, opacity: 0, delay: 0.5, ease: 'back'});
     </script>
+    
 
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbzbDPJecl1VNcVKiwhPtvYG_YZCu8ackWUgMJPUJ-354ryMDx3WsPjmjF5YLtCt8Okf/exec'
@@ -324,7 +328,7 @@
       const btnLoading = document.querySelector('.btn-loading');
       const myAlert = document.querySelector('.my-alert');
     
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', (e) => {    e
         e.preventDefault();
         //ketika tombol submit di klik
         //tampilkan tombol, loading hilangkan tombol kirim
@@ -345,7 +349,31 @@
             })
           .catch(error => console.error('Error!', error.message))
       })
+      let timerInterval
+    Swal.fire({
+      title: 'Terimakasih sudah mampir!.',
+
+      html: 'Saya akan tutup pada <b></b> milidetik.',
+      timer: 5000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
     </script>
+
 
   </body>
 </html>
